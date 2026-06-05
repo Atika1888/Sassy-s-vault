@@ -1,5 +1,5 @@
 /* =========================================
-   1. RESET & VARIABLE INITIALIZATION
+   1. GLOBAL ARCHITECTURE & KEYFRAMES
 ========================================= */
 * {
     margin: 0;
@@ -7,262 +7,480 @@
     box-sizing: border-box;
 }
 
-body {
+body.vault-mainframe {
+    background-color: #060913;
     color: #e2e8f0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: #0b0f19;
+    position: relative;
 }
 
 /* =========================================
-   2. IMMERSIVE HERO BACKGROUND DESIGN
+   2. IMMERSIVE BACKDROP PICTURE HARDWARE
 ========================================= */
-.vault-hero-bg {
+.mainframe-wrapper {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    /* Renders your favorite photo of you two globally in the backdrop */
-    background-image: url('pic1.jpg'); 
+    background-image: url('pic1.jpg'); /* Your picture background */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    padding: 60px 20px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    padding: 60px 20px;
 }
 
-.bg-overlay {
+/* Moving Cyber Matrix Grid Overlay */
+.cyber-grid-overlay {
     position: absolute;
     inset: 0;
-    /* Deeper dark neon fade to pull focus perfectly to your columns */
-    background: linear-gradient(135deg, rgba(11, 15, 25, 0.92), rgba(30, 17, 42, 0.88));
+    background: linear-gradient(135deg, rgba(6, 9, 19, 0.95), rgba(22, 11, 32, 0.91));
     z-index: 1;
 }
 
+.cyber-grid-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 105, 180, 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 105, 180, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 2;
+    animation: gridScroll 25s linear infinite;
+}
+
+@keyframes gridScroll {
+    from { background-position: 0 0; }
+    to { background-position: 0 1000px; }
+}
+
+/* Ambient Floating Icons System */
+.bg-cyber-elements {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.floating-node {
+    position: absolute;
+    font-size: 24px;
+    opacity: 0.12;
+    filter: blur(0.5px);
+    animation: driftFloating 12s infinite ease-in-out;
+}
+
+.n1 { top: 10%; left: 8%; animation-delay: 0s; }
+.n2 { top: 25%; right: 10%; animation-delay: 2s; }
+.n3 { bottom: 20%; left: 12%; animation-delay: 4s; }
+.n4 { bottom: 15%; right: 8%; animation-delay: 1s; }
+.n5 { top: 50%; left: 5%; animation-delay: 3s; }
+.n6 { top: 60%; right: 6%; animation-delay: 5s; }
+
+@keyframes driftFloating {
+    0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+    50% { transform: translateY(-25px) rotate(15deg) scale(1.15); opacity: 0.22; }
+}
+
 /* =========================================
-   3. STRUCTURAL FYP COLUMN FEED
+   3. CENTRAL COLUMN DASHBOARD
 ========================================= */
-.fyp-container {
+.central-dashboard {
     position: relative;
-    z-index: 2; /* Sits completely cleanly over the visual overlay */
+    z-index: 10;
     width: 100%;
-    max-width: 580px; /* Forces everything into that gorgeous vertical flow */
+    max-width: 580px;
 }
 
 .vault-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .security-badge {
-    display: inline-block;
-    background: rgba(16, 185, 129, 0.12);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.08);
     color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 6px 16px;
-    border-radius: 20px;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 6px 14px;
+    border-radius: 30px;
     font-size: 11px;
     font-weight: bold;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     margin-bottom: 16px;
-    text-transform: uppercase;
+}
+
+.live-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+    animation: pulseFlash 1.5s infinite;
+}
+
+@keyframes pulseFlash {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
 }
 
 .vault-title {
-    font-size: 32px;
-    color: #ff69b4;
-    text-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
-    font-weight: 800;
-    margin-bottom: 8px;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .vault-subtitle {
-    font-size: 14px;
-    opacity: 0.7;
+    font-size: 13px;
+    color: #ff69b4;
+    font-weight: bold;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    margin-top: 4px;
 }
 
-.pulse-line {
-    width: 80px;
+.glowing-divider {
+    width: 120px;
     height: 2px;
-    background: #ff69b4;
-    margin: 20px auto 0 auto;
-    box-shadow: 0 0 10px #ff69b4;
-    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+    margin: 15px auto 0 auto;
+    box-shadow: 0 0 12px #ff69b4;
 }
 
 /* =========================================
-   4. STACKED INTERACTIVE PACKET STREAM
+   4. STACKED CONSOLE APPLICATION FEEDS
 ========================================= */
-.fyp-column-feed {
+.fyp-feed-column {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Perfectly aligned column look */
+    gap: 18px;
 }
 
-.feed-instruction {
-    text-align: center;
-    font-size: 13px;
-    opacity: 0.6;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+.terminal-status-bar {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    padding: 0 5px;
 }
 
 .hardware-card {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
+    padding: 22px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.component-flex {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.card-meta {
-    font-family: monospace;
-    font-size: 10px;
-    color: rgba(255, 255, 255, 0.3);
-    margin-bottom: 8px;
-    letter-spacing: 2px;
+.card-edge-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: transparent;
+    transition: 0.3s;
 }
 
 .hardware-card:hover {
-    transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 105, 180, 0.6);
-    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.15);
+    transform: translateY(-4px) scale(1.01);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 105, 180, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 105, 180, 0.1);
 }
 
-.component-icon {
-    font-size: 32px;
+.hardware-card:hover .card-edge-glow {
+    background: #ff69b4;
+    box-shadow: 0 0 10px #ff69b4;
+}
+
+.card-header-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: monospace;
+    font-size: 10px;
+    margin-bottom: 12px;
+}
+
+.sys-code { color: rgba(255, 255, 255, 0.3); }
+
+.sys-status {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.status-alert { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+.status-update { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.status-secure { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+.status-ping { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.status-auth { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+
+.card-core-layout {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.icon-avatar {
+    width: 52px;
+    height: 52px;
     background: rgba(255, 255, 255, 0.03);
-    width: 60px;
-    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 24px;
+    border-radius: 16px;
 }
 
+.card-details { flex: 1; }
+
 .component-label {
-    font-size: 11px;
-    color: #ff69b4;
+    font-size: 16px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    color: white;
     margin-bottom: 4px;
 }
 
-.component-name {
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
+.component-desc {
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.4;
 }
 
 /* =========================================
-   5. PREMIUM LAYER DECRYPTION POPUPS (MODALS)
+   5. DECRYPTION MODAL CORE COCKPITS
 ========================================= */
 .vault-modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(11, 15, 25, 0.88);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background: rgba(4, 6, 12, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
 .modal-content {
-    background: #121824;
-    border: 1px solid rgba(255, 105, 180, 0.3);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 105, 180, 0.15);
+    background: #0d1220;
+    border: 1px solid rgba(255, 105, 180, 0.25);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 105, 180, 0.1);
     width: 100%;
-    max-width: 540px;
-    border-radius: 30px;
-    padding: 40px 30px;
+    max-width: 520px;
+    border-radius: 28px;
+    padding: 35px 25px;
     position: relative;
     max-height: 85vh;
-    overflow-y: auto; /* Ensures content is beautifully scrollable on mobile */
-    animation: fypPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow-y: auto;
+    animation: fypScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes fypPop {
-    from { transform: scale(0.92); opacity: 0; }
+@keyframes fypScaleIn {
+    from { transform: scale(0.96); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
 .close-btn {
     position: absolute;
     top: 20px;
-    right: 25px;
-    font-size: 28px;
-    color: #e2e8f0;
+    right: 22px;
+    font-size: 26px;
+    color: #64748b;
     cursor: pointer;
     transition: 0.2s;
-    z-index: 10;
 }
 
-.close-btn:hover {
-    color: #ff69b4;
-}
+.close-btn:hover { color: #ff69b4; }
 
-.modal-badge {
+.modal-header-tag {
+    font-family: monospace;
     font-size: 11px;
-    font-family: 'Courier New', Courier, monospace;
-    background: rgba(255, 105, 180, 0.12);
     color: #ff69b4;
-    padding: 4px 12px;
-    border-radius: 6px;
-    display: inline-block;
-    margin-bottom: 18px;
-    font-weight: bold;
     letter-spacing: 1px;
+    margin-bottom: 14px;
 }
 
-.modal-title {
-    font-size: 20px;
+.letter-title {
+    font-size: 18px;
+    font-weight: 800;
     color: white;
-    margin-bottom: 22px;
-    line-height: 1.4;
-    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 12px;
 }
 
-.modal-text {
-    font-size: 15px;
-    line-height: 1.75;
+.terminal-body {
+    font-size: 14.5px;
+    line-height: 1.7;
     color: #cbd5e1;
 }
 
-.modal-text p {
-    margin-bottom: 16px;
+.greeting {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 12px;
 }
 
 /* =========================================
-   6. RESPONSIVE ADAPTATIONS
+   6. INNER CYBER-ROMANTIC COMPONENTS
+========================================= */
+.terminal-action-box {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px dashed rgba(255, 105, 180, 0.3);
+    border-radius: 14px;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: monospace;
+    font-size: 13px;
+}
+.terminal-action-box span { color: #ff69b4; font-weight: bold; display: block; margin-bottom: 6px;}
+
+.terminal-footer-log {
+    background: rgba(255, 105, 180, 0.06);
+    border-left: 3px solid #ff69b4;
+    padding: 12px;
+    border-radius: 0 12px 12px 0;
+    font-weight: bold;
+    color: white;
+    margin-top: 15px;
+}
+
+/* Changelog Code Grid */
+.code-terminal-block {
+    background: #070a12;
+    padding: 16px;
+    border-radius: 14px;
+    font-family: monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.code-comment { color: #64748b; display: block; margin-bottom: 4px; }
+.code-keyword { color: #ff69b4; font-weight: bold; }
+
+.upcoming-release-heading {
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+.marriage-exe-box {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 6px;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+}
+
+/* Backup Table System */
+.backup-spec-table {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 14px;
+    padding: 5px 15px;
+    margin: 15px 0;
+    font-family: monospace;
+    font-size: 12.5px;
+}
+.spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-row span:first-child { color: #64748b; }
+.spec-row span:last-child { color: white; font-weight: bold; }
+
+/* Notification Bubble & Status Diagnostics */
+.alert-action-strip {
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: #f59e0b;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 13.5px;
+}
+
+.notification-bubble {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 14px;
+    margin: 15px 0;
+    font-size: 13.5px;
+}
+
+.status-panel-box {
+    background: #070a12;
+    padding: 15px;
+    border-radius: 14px;
+    font-family: monospace;
+    font-size: 12px;
+}
+.panel-title { color: #64748b; display: block; margin-bottom: 8px; }
+.panel-stat { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.glow-dot { width: 6px; height: 6px; border-radius: 50%; }
+.glow-dot.green { background: #10b981; box-shadow: 0 0 6px #10b981; }
+.glow-dot.pink { background: #ff69b4; box-shadow: 0 0 6px #ff69b4; }
+
+/* 2FA Console Elements */
+.verification-console {
+    background: #070a12;
+    padding: 15px;
+    border-radius: 14px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.auth-methods-container {
+    background: rgba(168, 85, 247, 0.06);
+    border: 1px dashed rgba(168, 85, 247, 0.3);
+    padding: 15px;
+    border-radius: 14px;
+    margin: 15px 0;
+    font-size: 13.5px;
+}
+.container-header { color: #a855f7; font-weight: bold; font-family: monospace; display: block; margin-bottom: 6px;}
+
+/* =========================================
+   7. MOBILE MEDIA QUERY ADAPTATIONS
 ========================================= */
 @media (max-width: 480px) {
-    .vault-hero-bg { padding: 40px 15px; }
-    .vault-title { font-size: 26px; }
-    .hardware-card { padding: 18px; }
-    .component-icon { width: 50px; height: 50px; font-size: 26px; }
-    .component-name { font-size: 15px; }
-    .modal-content { padding: 30px 20px; }
-    .modal-title { font-size: 18px; }
+    .mainframe-wrapper { padding: 40px 12px; }
+    .vault-title { font-size: 23px; }
+    .hardware-card { padding: 16px; }
+    .icon-avatar { width: 45px; height: 45px; font-size: 20px; }
+    .component-label { font-size: 14px; }
+    .modal-content { padding: 25px 18px; }
+    .letter-title { font-size: 16px; }
+    .terminal-body { font-size: 13.5px; }
 }
