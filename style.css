@@ -1,5 +1,5 @@
 /* =========================================
-   1. GLOBAL ARCHITECTURE & KEYFRAMES
+   1. CORE STYLE RESETS & PORTFOLIO THEME
 ========================================= */
 * {
     margin: 0;
@@ -7,9 +7,9 @@
     box-sizing: border-box;
 }
 
-body.vault-mainframe {
-    background-color: #060913;
-    color: #e2e8f0;
+body.portfolio-theme {
+    background: radial-gradient(circle at 50% 50%, #2e1d47 0%, #150f24 100%);
+    color: #f1f5f9;
     font-family: 'Segoe UI', system-ui, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
@@ -17,258 +17,227 @@ body.vault-mainframe {
 }
 
 /* =========================================
-   2. IMMERSIVE BACKDROP PICTURE HARDWARE
+   2. FLOATING AMBIENT BACKGROUND INTERFACES
 ========================================= */
-.mainframe-wrapper {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background-image: url('pic1.jpg'); /* Your picture background */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 60px 20px;
-}
-
-/* Moving Cyber Matrix Grid Overlay */
-.cyber-grid-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(6, 9, 19, 0.95), rgba(22, 11, 32, 0.91));
-    z-index: 1;
-}
-
-.cyber-grid-overlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: linear-gradient(rgba(255, 105, 180, 0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255, 105, 180, 0.03) 1px, transparent 1px);
-    background-size: 30px 30px;
-    z-index: 2;
-    animation: gridScroll 25s linear infinite;
-}
-
-@keyframes gridScroll {
-    from { background-position: 0 0; }
-    to { background-position: 0 1000px; }
-}
-
-/* Ambient Floating Icons System */
-.bg-cyber-elements {
+.floating-bg-icons {
     position: fixed;
     inset: 0;
-    z-index: 2;
+    z-index: 1;
     pointer-events: none;
 }
 
-.floating-node {
+.f-icon {
     position: absolute;
-    font-size: 24px;
-    opacity: 0.12;
-    filter: blur(0.5px);
-    animation: driftFloating 12s infinite ease-in-out;
+    font-size: 26px;
+    opacity: 0.15;
+    animation: floatingDrift 14s infinite ease-in-out;
 }
 
-.n1 { top: 10%; left: 8%; animation-delay: 0s; }
-.n2 { top: 25%; right: 10%; animation-delay: 2s; }
-.n3 { bottom: 20%; left: 12%; animation-delay: 4s; }
-.n4 { bottom: 15%; right: 8%; animation-delay: 1s; }
-.n5 { top: 50%; left: 5%; animation-delay: 3s; }
-.n6 { top: 60%; right: 6%; animation-delay: 5s; }
+.i1 { top: 12%; left: 7%; animation-delay: 0s; }
+.i2 { top: 20%; right: 9%; animation-delay: 2s; }
+.i3 { bottom: 25%; left: 10%; animation-delay: 4s; }
+.i4 { bottom: 15%; right: 12%; animation-delay: 1s; }
+.i5 { top: 45%; left: 4%; animation-delay: 3s; }
+.i6 { top: 65%; right: 5%; animation-delay: 5s; }
 
-@keyframes driftFloating {
+@keyframes floatingDrift {
     0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-    50% { transform: translateY(-25px) rotate(15deg) scale(1.15); opacity: 0.22; }
+    50% { transform: translateY(-30px) rotate(20deg) scale(1.2); opacity: 0.3; }
 }
 
 /* =========================================
-   3. CENTRAL COLUMN DASHBOARD
+   3. NAVIGATION BAR HEADER
 ========================================= */
-.central-dashboard {
+.portfolio-nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 25px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
     z-index: 10;
-    width: 100%;
-    max-width: 580px;
 }
 
-.vault-header {
-    text-align: center;
-    margin-bottom: 35px;
-}
-
-.security-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(16, 185, 129, 0.08);
-    color: #10b981;
-    border: 1px solid rgba(16, 185, 129, 0.25);
-    padding: 6px 14px;
-    border-radius: 30px;
-    font-size: 11px;
+.nav-logo {
+    font-size: 20px;
     font-weight: bold;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-}
-
-.live-indicator {
-    width: 8px;
-    height: 8px;
-    background-color: #10b981;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #10b981;
-    animation: pulseFlash 1.5s infinite;
-}
-
-@keyframes pulseFlash {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-}
-
-.vault-title {
-    font-size: 30px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    color: white;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-}
-
-.vault-subtitle {
-    font-size: 13px;
     color: #ff69b4;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-top: 4px;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.4);
 }
 
-.glowing-divider {
-    width: 120px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff69b4, transparent);
-    margin: 15px auto 0 auto;
-    box-shadow: 0 0 12px #ff69b4;
+.nav-links {
+    font-size: 14px;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item.active {
+    color: white;
+    border-bottom: 2px solid #ff69b4;
+    padding-bottom: 4px;
+    font-weight: 600;
 }
 
 /* =========================================
-   4. STACKED CONSOLE APPLICATION FEEDS
+   4. HERO HEADER CONFIGURATION (From image_7db57a.jpg)
 ========================================= */
-.fyp-feed-column {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.terminal-status-bar {
-    display: flex;
-    justify-content: space-between;
-    font-family: monospace;
-    font-size: 11px;
-    color: rgba(255, 255, 255, 0.3);
-    padding: 0 5px;
-}
-
-.hardware-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 20px;
-    padding: 22px;
-    cursor: pointer;
+.portfolio-hero {
+    text-align: center;
     position: relative;
+    padding: 60px 20px 40px 20px;
+    z-index: 5;
     overflow: hidden;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.card-edge-glow {
+/* Large decorative blurred background text */
+.hero-bg-text-left, .hero-bg-text-right {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
+    top: 35%;
+    font-size: 90px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    letter-spacing: 5px;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+.hero-bg-text-left { left: 10%; transform: translateY(-50%); }
+.hero-bg-text-right { right: 10%; transform: translateY(-50%); }
+
+/* Glowing Pink Avatar Structure */
+.profile-avatar-container {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 25px auto;
+}
+
+.profile-avatar {
+    width: 100%;
     height: 100%;
-    background: transparent;
-    transition: 0.3s;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ff69b4;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
 }
 
-.hardware-card:hover {
-    transform: translateY(-4px) scale(1.01);
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 105, 180, 0.4);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 105, 180, 0.1);
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.hardware-card:hover .card-edge-glow {
-    background: #ff69b4;
-    box-shadow: 0 0 10px #ff69b4;
+.profile-badge {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f1635;
+    border: 1px solid rgba(255, 105, 180, 0.3);
+    padding: 4px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
 }
 
-.card-header-meta {
-    display: flex;
-    justify-content: space-between;
-    font-family: monospace;
-    font-size: 10px;
+.hero-title {
+    font-size: 38px;
+    font-weight: 800;
+    color: white;
     margin-bottom: 12px;
 }
 
-.sys-code { color: rgba(255, 255, 255, 0.3); }
-
-.sys-status {
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-.status-alert { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
-.status-update { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
-.status-secure { background: rgba(16, 185, 129, 0.1); color: #10b981; }
-.status-ping { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
-.status-auth { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
-
-.card-core-layout {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.icon-avatar {
-    width: 52px;
-    height: 52px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    border-radius: 16px;
-}
-
-.card-details { flex: 1; }
-
-.component-label {
-    font-size: 16px;
-    font-weight: 700;
-    color: white;
-    margin-bottom: 4px;
-}
-
-.component-desc {
-    font-size: 12px;
-    color: #94a3b8;
-    line-height: 1.4;
+.hero-subtitle {
+    font-size: 15px;
+    color: #b4aad0;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 /* =========================================
-   5. DECRYPTION MODAL CORE COCKPITS
+   5. TRANSLUCENT PORFOLIO GRID (From image_7db5b7.jpg)
 ========================================= */
-.vault-modal {
+.projects-section {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 40px 20px 80px 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Glassmorphism Interactive Cards */
+.project-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 35px 25px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 105, 180, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 105, 180, 0.1);
+}
+
+.card-icon {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+}
+
+.card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-family: monospace;
+}
+.card-tag.alert { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.card-tag.update { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.card-tag.secure { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+.card-tag.ping { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+.card-tag.auth { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+
+/* =========================================
+   6. LUXURIOUS MODAL COMPONENT STYLING
+========================================= */
+.custom-modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 1000;
-    background: rgba(4, 6, 12, 0.9);
+    background: rgba(15, 10, 26, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     justify-content: center;
@@ -276,116 +245,91 @@ body.vault-mainframe {
     padding: 20px;
 }
 
-.modal-content {
-    background: #0d1220;
-    border: 1px solid rgba(255, 105, 180, 0.25);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 105, 180, 0.1);
+.modal-card-content {
+    background: #19122b;
+    border: 1px solid rgba(255, 105, 180, 0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
     width: 100%;
-    max-width: 520px;
-    border-radius: 28px;
-    padding: 35px 25px;
+    max-width: 540px;
+    border-radius: 32px;
+    padding: 35px 30px;
     position: relative;
     max-height: 85vh;
     overflow-y: auto;
-    animation: fypScaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: portfolioModalOpen 0.35s cubic-bezier(0.15, 1, 0.3, 1);
 }
 
-@keyframes fypScaleIn {
-    from { transform: scale(0.96); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+@keyframes portfolioModalOpen {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
-.close-btn {
+.close-modal-btn {
     position: absolute;
-    top: 20px;
-    right: 22px;
-    font-size: 26px;
-    color: #64748b;
+    top: 22px;
+    right: 25px;
+    font-size: 28px;
+    color: #7c7295;
     cursor: pointer;
     transition: 0.2s;
 }
+.close-modal-btn:hover { color: #ff69b4; }
 
-.close-btn:hover { color: #ff69b4; }
-
-.modal-header-tag {
+.modal-meta {
     font-family: monospace;
     font-size: 11px;
     color: #ff69b4;
     letter-spacing: 1px;
-    margin-bottom: 14px;
+    margin-bottom: 8px;
 }
 
-.letter-title {
-    font-size: 18px;
+.modal-main-title {
+    font-size: 20px;
     font-weight: 800;
     color: white;
     margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding-bottom: 12px;
 }
 
-.terminal-body {
-    font-size: 14.5px;
+.modal-text-pane {
+    font-size: 15px;
     line-height: 1.7;
     color: #cbd5e1;
 }
 
-.greeting {
-    font-size: 16px;
+.letter-greeting {
+    font-size: 17px;
     font-weight: bold;
     color: white;
     margin-bottom: 12px;
 }
 
-/* =========================================
-   6. INNER CYBER-ROMANTIC COMPONENTS
-========================================= */
-.terminal-action-box {
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px dashed rgba(255, 105, 180, 0.3);
-    border-radius: 14px;
-    padding: 15px;
-    margin: 15px 0;
+/* Internal Modules Inside Popups */
+.terminal-container, .code-block-interface, .spec-grid-table, .console-box {
+    background: #0f0a1a;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 18px 0;
     font-family: monospace;
     font-size: 13px;
-}
-.terminal-action-box span { color: #ff69b4; font-weight: bold; display: block; margin-bottom: 6px;}
-
-.terminal-footer-log {
-    background: rgba(255, 105, 180, 0.06);
-    border-left: 3px solid #ff69b4;
-    padding: 12px;
-    border-radius: 0 12px 12px 0;
-    font-weight: bold;
-    color: white;
-    margin-top: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-/* Changelog Code Grid */
-.code-terminal-block {
-    background: #070a12;
-    padding: 16px;
-    border-radius: 14px;
-    font-family: monospace;
-    font-size: 12.5px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.04);
-}
-.code-comment { color: #64748b; display: block; margin-bottom: 4px; }
-.code-keyword { color: #ff69b4; font-weight: bold; }
+.terminal-title { color: #ff69b4; display: block; margin-bottom: 6px; font-weight: bold;}
+.code-cmt { color: #64748b; display: block; margin-bottom: 4px; }
+.code-kw { color: #ff69b4; font-weight: bold; }
 
-.upcoming-release-heading {
+.release-label {
     font-family: monospace;
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.4);
+    color: #7c7295;
     margin-top: 15px;
-    letter-spacing: 1px;
 }
 
-.marriage-exe-box {
+.marriage-badge {
     background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(16, 185, 129, 0.25);
     color: #10b981;
     font-family: monospace;
     font-size: 18px;
@@ -394,93 +338,57 @@ body.vault-mainframe {
     border-radius: 12px;
     text-align: center;
     margin-top: 6px;
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
 }
 
-/* Backup Table System */
-.backup-spec-table {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 14px;
-    padding: 5px 15px;
-    margin: 15px 0;
-    font-family: monospace;
-    font-size: 12.5px;
-}
-.spec-row {
+.grid-table-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
-.spec-row:last-child { border-bottom: none; }
-.spec-row span:first-child { color: #64748b; }
-.spec-row span:last-child { color: white; font-weight: bold; }
+.grid-table-row:last-child { border-bottom: none; }
+.grid-table-row span:first-child { color: #7c7295; }
+.grid-table-row span:last-child { color: white; font-weight: bold; }
 
-/* Notification Bubble & Status Diagnostics */
-.alert-action-strip {
+.ping-alert {
     background: rgba(245, 158, 11, 0.1);
-    border: 1px solid rgba(245, 158, 11, 0.3);
+    border: 1px solid rgba(245, 158, 11, 0.25);
     color: #f59e0b;
     padding: 12px;
     border-radius: 12px;
     font-weight: 600;
-    font-size: 13.5px;
 }
 
-.notification-bubble {
+.bullet-highlights {
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 14px;
+    border-radius: 12px;
     padding: 14px;
-    margin: 15px 0;
-    font-size: 13.5px;
+    margin-top: 15px;
 }
 
-.status-panel-box {
-    background: #070a12;
-    padding: 15px;
-    border-radius: 14px;
-    font-family: monospace;
-    font-size: 12px;
-}
-.panel-title { color: #64748b; display: block; margin-bottom: 8px; }
-.panel-stat { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.glow-dot { width: 6px; height: 6px; border-radius: 50%; }
-.glow-dot.green { background: #10b981; box-shadow: 0 0 6px #10b981; }
-.glow-dot.pink { background: #ff69b4; box-shadow: 0 0 6px #ff69b4; }
-
-/* 2FA Console Elements */
-.verification-console {
-    background: #070a12;
-    padding: 15px;
-    border-radius: 14px;
-    font-family: monospace;
-    font-size: 13px;
-    color: #cbd5e1;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.auth-methods-container {
-    background: rgba(168, 85, 247, 0.06);
-    border: 1px dashed rgba(168, 85, 247, 0.3);
+.auth-box {
+    background: rgba(168, 85, 247, 0.08);
+    border: 1px dashed rgba(168, 85, 247, 0.25);
     padding: 15px;
     border-radius: 14px;
     margin: 15px 0;
-    font-size: 13.5px;
 }
-.container-header { color: #a855f7; font-weight: bold; font-family: monospace; display: block; margin-bottom: 6px;}
+
+.terminal-footer {
+    background: rgba(255, 105, 180, 0.05);
+    border-left: 3px solid #ff69b4;
+    padding: 12px;
+    border-radius: 0 12px 12px 0;
+    font-weight: bold;
+    color: white;
+    margin-top: 18px;
+}
 
 /* =========================================
-   7. MOBILE MEDIA QUERY ADAPTATIONS
+   7. RESPONSIVE LAYOUT MEDIA QUERIES
 ========================================= */
-@media (max-width: 480px) {
-    .mainframe-wrapper { padding: 40px 12px; }
-    .vault-title { font-size: 23px; }
-    .hardware-card { padding: 16px; }
-    .icon-avatar { width: 45px; height: 45px; font-size: 20px; }
-    .component-label { font-size: 14px; }
-    .modal-content { padding: 25px 18px; }
-    .letter-title { font-size: 16px; }
-    .terminal-body { font-size: 13.5px; }
+@media (max-width: 768px) {
+    .hero-bg-text-left, .hero-bg-text-right { display: none; }
+    .hero-title { font-size: 28px; }
+    .projects-grid { grid-template-columns: 1fr; }
 }
