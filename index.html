@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Forever Vault // Atika & Murtaza</title>
+    <title>Our Forever Vault</title>
     <style>
         /* =========================================
            1. ROSE QUARTZ & CREAM THEME (ANTI-PORTFOLIO)
@@ -256,6 +256,7 @@
             border-radius: 4px;
             transition: transform 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
 
         .polaroid-frame:nth-child(odd) { transform: rotate(-2deg); }
@@ -432,6 +433,71 @@
             color: #9d5c7b;
             text-align: center;
         }
+
+        /* =========================================
+           6. PHOTO LIGHTBOX PREVIEW SYSTEM
+        ========================================= */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(30, 16, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeInLightbox 0.3s ease;
+        }
+
+        @keyframes fadeInLightbox {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 85vh;
+            background: white;
+            padding: 15px 15px 35px 15px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+            border-radius: 4px;
+            text-align: center;
+            animation: scaleUpLightbox 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes scaleUpLightbox {
+            from { transform: scale(0.9) translateY(10px); }
+            to { transform: scale(1) translateY(0); }
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 2px;
+        }
+
+        .lightbox-caption {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 18px;
+            font-style: italic;
+            color: #4a3b42;
+            margin-top: 15px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            font-size: 35px;
+            color: white;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .lightbox-close:hover { color: #fbcfe8; }
     </style>
 </head>
 <body>
@@ -440,9 +506,16 @@
         <span class="petal p1">🌸</span>
         <span class="petal p2">✨</span>
         <span class="petal p3">🌸</span>
-        <span class="petal p4">✨</span>
+        <span class="petal p4">🌸</span>
+        <span class="petal p5">🌸</span>
+        <span class="petal p6">🌸</span>
+        <span class="petal p7">✨</span>
+        <span class="petal p8">✨</span>
+            <span class="petal p9">🌸</span>
+            <span class="petal p10">🌸</span>
     </div>
 
+    <!-- NAVIGATION TAB REGISTRY -->
     <nav class="scrapbook-nav">
         <div class="nav-branding">Atika & Murtaza</div>
         <div class="nav-tabs">
@@ -457,6 +530,7 @@
         <div class="hero-divider"></div>
     </header>
 
+    <!-- SECTION 1: THE LETTERS VAULT PAGE -->
     <main id="letters-page" class="page-content active-page">
         <div class="letters-layout">
             
@@ -517,8 +591,10 @@
         </div>
     </main>
 
+    <!-- SECTION 2: THE INTERACTIVE MEMORIES VIDEO + GALLERY PAGE -->
     <main id="memories-page" class="page-content">
         
+        <!-- Interactive Video Window Wrapper (Plays First) -->
         <div id="video-stage" class="video-wrapper-container">
             <video id="story-video" class="video-player" controls>
                 <source src="first edit.mp4" type="video/mp4">
@@ -528,67 +604,86 @@
             <button class="unlock-gallery-btn" onclick="unlockPhotoAlbum()">Unlock Photo Album ✨</button>
         </div>
 
+        <!-- Polaroid Memories Frame Grid Layout -->
         <div id="photo-gallery-grid" class="memories-layout">
             
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 1 -->
+            <div class="polaroid-frame" onclick="openLightbox('ss gr.jpeg', 'Where it all began ❤️')">
                 <div class="polaroid-image-wrapper">
-                    <img src="first soca shoot.jpeg" alt="Memory 1">
+                    <img src="ss gr.jpeg" alt="Memory 1">
                 </div>
                 <p class="polaroid-caption">Where it all began ❤️</p>
             </div>
 
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 2 -->
+            <div class="polaroid-frame" onclick="openLightbox('smile.jpeg', 'My favorite smile ✨')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic2.jpg" alt="Memory 2">
+                    <img src="smile.jpeg" alt="Memory 2">
                 </div>
                 <p class="polaroid-caption">My favorite smile ✨</p>
             </div>
 
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 3 -->
+            <div class="polaroid-frame" onclick="openLightbox('gajra.jpeg', 'Every single moment with you.')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic3.jpg" alt="Memory 3">
+                    <img src="gajra.jpeg" alt="Memory 3">
                 </div>
                 <p class="polaroid-caption">Every single moment with you.</p>
             </div>
 
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 4 -->
+            <div class="polaroid-frame" onclick="openLightbox('first shoot.jpeg', 'Our first shoot')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic4.jpg" alt="Memory 4">
+                    <img src="first shoot.jpeg" alt="Memory 4">
                 </div>
-                <p class="polaroid-caption">Our beautiful engagement 💍</p>
+                <p class="polaroid-caption">Our first shoot</p>
             </div>
 
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 5 -->
+            <div class="polaroid-frame" onclick="openLightbox('meet sessions.jpeg', 'Laughing through it all 🌸')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic5.jpg" alt="Memory 5">
+                    <img src="meet sessions.jpeg" alt="Memory 5">
                 </div>
                 <p class="polaroid-caption">Laughing through it all 🌸</p>
             </div>
 
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 6 -->
+            <div class="polaroid-frame" onclick="openLightbox('those days.jpeg', 'The sweetest days with you ✨')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic6.jpg" alt="Memory 6">
+                    <img src="those days.jpeg" alt="Memory 6">
                 </div>
                 <p class="polaroid-caption">The sweetest days with you ✨</p>
             </div>
 
-            <div class="polaroid-frame">
+            <!-- Polaroid Picture 7 -->
+            <div class="polaroid-frame" onclick="openLightbox('his first bday.jpeg', 'My favorite place is next to you 💕')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic7.jpg" alt="Memory 7">
+                    <img src="his first bday.jpeg" alt="Memory 7">
                 </div>
                 <p class="polaroid-caption">My favorite place is next to you 💕</p>
             </div>
-
-            <div class="polaroid-frame">
+             <!-- Polaroid Picture 8 -->
+            <div class="polaroid-frame" onclick="openLightbox('eifi.jpeg', 'First Eidi ✨')">
                 <div class="polaroid-image-wrapper">
-                    <img src="pic8.jpg" alt="Memory 8">
+                    <img src="eifi.jpeg" alt="Memory 8">
+                </div>
+                <p class="polaroid-caption">First Eidi ✨</p>
+            </div>
+
+            <!-- Polaroid Picture 9 -->
+            <div class="polaroid-frame" onclick="openLightbox('us being cute.jpeg', 'To infinite updates together ♾️')">
+                <div class="polaroid-image-wrapper">
+                    <img src="us being cute.jpeg" alt="Memory 8">
                 </div>
                 <p class="polaroid-caption">To infinite updates together ♾️</p>
             </div>
 
         </div>
+       
     </main>
 
+
+    <!-- DREAMY MEMORIES POP-UP INTRO -->
     <div id="memories-welcome-modal" class="letter-modal">
         <div class="modal-paper dreamy-modal-paper">
             <span class="modal-dismiss-btn" onclick="closeMemoriesModal()">&times;</span>
@@ -601,6 +696,7 @@
         </div>
     </div>
 
+    <!-- ORIGINAL LETTERS POPUP CONTENT -->
     <div id="l1" class="letter-modal">
         <div class="modal-paper">
             <span class="modal-dismiss-btn" onclick="hideModal('l1')">&times;</span>
@@ -610,11 +706,9 @@
                 <span class="salutation-header">My Dearest Murtaza,</span>
                 <p class="letter-paragraph">If you're opening this partition, I'm guessing your brain has officially decided to go on strike after hours of work, coding, meetings, or solving problems that somehow always find their way to you.</p>
                 <p class="letter-paragraph">So here's your reminder: <strong>you don't have to carry everything at once.</strong></p>
-                
                 <div class="highlight-accent-block">
                     Take a deep breath. Close your computer eyes. Eat some chocolate, drink a cold glass of water, stretch out, and just rest for a moment.
                 </div>
-
                 <p class="letter-paragraph">Close a few tabs in that beautiful overthinking mind of yours. I know how hard you work for your dreams, and I know how much effort you put into building a future for us. Sometimes I wish you could see yourself through my eyes—the determination, intelligence, and dedication that make me so proud every single day.</p>
                 <div class="footer-note">Your fiancée loves you completely.</div>
             </div>
@@ -630,9 +724,7 @@
                 <p class="letter-paragraph"><strong>v1.0:</strong> Two beautiful strangers crossed paths. Unexpected feelings detected.</p>
                 <p class="letter-paragraph"><strong>v1.5:</strong> Countless hours of conversations unlocked. Late-night 2:50 AM Google Meet connections.</p>
                 <p class="letter-paragraph"><strong>v2.0:</strong> Engagement successfully completed. Our beautiful future planning modules activated.</p>
-                
                 <div class="wedding-milestone-panel">💍 Next Step: Marriage.exe</div>
-                
                 <span class="salutation-header">Murtaza,</span>
                 <p class="letter-paragraph">One of my favorite things has been watching you grow into the man you are becoming. Every challenge you've faced, every goal you've worked toward, and every milestone you've achieved has made me admire you even more. Graduation is just the beginning of beautiful things waiting for you. And the best part? <strong>I get to stand beside you through all of it.</strong></p>
             </div>
@@ -648,13 +740,11 @@
                 <span class="salutation-header">Dear Murtaza,</span>
                 <p class="letter-paragraph">This note is hidden away because that's exactly how backup systems work—you don't always see them, but they're always there when you need them.</p>
                 <p class="letter-paragraph">Life is about to move very fast. New responsibilities, new goals, and new projects will come your way. Through all of those days, I want you to remember one thing: <strong>You never have to face anything alone.</strong></p>
-                
                 <div class="stat-sheet">
                     <div class="stat-row"><span>ALLOCATION:</span><span>Endless Love & Care</span></div>
                     <div class="stat-row"><span>EXPIRATION:</span><span>Lifetime [Permanent]</span></div>
                     <div class="stat-row"><span>CAPACITY:</span><span>Infinite Space</span></div>
                 </div>
-
                 <p class="letter-paragraph">Whenever you feel stressed or simply tired, I will always be here to listen, celebrate every victory, and help carry every single burden I can.</p>
             </div>
         </div>
@@ -684,13 +774,11 @@
             <h3 class="modal-paper-title">Two-Factor Authentication</h3>
             <div class="letter-body-text">
                 <p class="letter-paragraph"><strong>Access Granted!</strong> You have successfully logged into my heart permanently.</p>
-                
                 <div class="stat-sheet">
                     <div class="stat-row"><span>Passcode One:</span><span>A tight, cozy hug</span></div>
                     <div class="stat-row"><span>Passcode Two:</span><span>A soft forehead kiss</span></div>
                     <div class="stat-row"><span>Passcode Three:</span><span>Holding onto my hand forever</span></div>
                 </div>
-
                 <p class="letter-paragraph" style="text-align: center; font-weight: bold; color: #9d5c7b; font-size: 18px; margin-top: 20px;">I love you, sassy ❤️</p>
             </div>
         </div>
@@ -765,6 +853,16 @@
         </div>
     </div>
 
+    <!-- NEW INTERACTIVE LIGHTBOX FOR PICTURE BIG-VIEW -->
+    <div id="photo-lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <div class="lightbox-container" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-target-img" class="lightbox-img" src="" alt="Enlarged view">
+            <p id="lightbox-target-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- RUNTIME LOGIC TRANSITIONS -->
     <script>
         let targetPageId = '';
         let targetActiveBtn = null;
@@ -821,6 +919,19 @@
 
         function hideModal(id) {
             document.getElementById(id).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        /* LIGHTBOX SYSTEM ACTIONS */
+        function openLightbox(imgSrc, captionText) {
+            document.getElementById('lightbox-target-img').src = imgSrc;
+            document.getElementById('lightbox-target-caption').innerText = captionText;
+            document.getElementById('photo-lightbox').style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+            document.getElementById('photo-lightbox').style.display = "none";
             document.body.style.overflow = "auto";
         }
 
