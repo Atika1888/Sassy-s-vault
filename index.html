@@ -8,69 +8,100 @@
 </head>
 <body>
 
-    <header class="vault-header">
-        <div class="security-badge">🔒 Connection Secure • AES-256 Encrypted</div>
-        <h1 class="vault-title">Murtaza's Hardware Vault</h1>
-        <p class="vault-subtitle">Changelog v2.0 // Graduation & Beyond</p>
-    </header>
+    <!-- HERO BACKGROUND WRAPPER -->
+    <div class="vault-hero-bg">
+        <!-- Overlay makes sure the text is readable over your picture -->
+        <div class="bg-overlay"></div>
+        
+        <!-- MAIN FYP COLUMN CONTENT CONTAINER -->
+        <main class="fyp-container">
+            
+            <!-- SECURE HEADER MODULE -->
+            <header class="vault-header">
+                <div class="security-badge">🔒 Connection Secure • AES-256 Encrypted</div>
+                <h1 class="vault-title">Murtaza's Hardware Vault</h1>
+                <p class="vault-subtitle">Changelog v2.0 // Graduation & Beyond</p>
+                <div class="pulse-line"></div>
+            </header>
 
-    <section class="vault-section">
-        <h2 class="section-heading">📸 Synced Media Log</h2>
-        <div class="photo-grid">
-            <div class="photo-wrapper">
-                <img src="pic1.jpg" alt="Memory 1" class="vault-photo">
-                <div class="photo-caption">System Initialization</div>
+            <!-- STREAMLINED INTERACTIVE LETTER PACKETS (FYP COLUMN) -->
+            <div class="fyp-column-feed">
+                <p class="feed-instruction">Murtaza, click on a partition to decrypt your letters</p>
+
+                <!-- PACKET 1 -->
+                <div class="hardware-card" onclick="openLetter('modal1')">
+                    <div class="card-glow"></div>
+                    <div class="card-meta">PARTITION // 01</div>
+                    <div class="component-flex">
+                        <div class="component-icon">⚡</div>
+                        <div>
+                            <div class="component-label">Error 404: Energy Not Found</div>
+                            <div class="component-name">CPU Overload Note</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PACKET 2 -->
+                <div class="hardware-card" onclick="openLetter('modal2')">
+                    <div class="card-glow"></div>
+                    <div class="card-meta">PARTITION // 02</div>
+                    <div class="component-flex">
+                        <div class="component-icon">🔄</div>
+                        <div>
+                            <div class="component-label">System Update: Changelog v2.0</div>
+                            <div class="component-name">Firmware Update Log</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PACKET 3 -->
+                <div class="hardware-card" onclick="openLetter('modal3')">
+                    <div class="card-glow"></div>
+                    <div class="card-meta">PARTITION // 03</div>
+                    <div class="component-flex">
+                        <div class="component-icon">🛡️</div>
+                        <div>
+                            <div class="component-label">Cloud Backup & Redundancy</div>
+                            <div class="component-name">Hardware Backup Partition</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PACKET 4 -->
+                <div class="hardware-card" onclick="openLetter('modal4')">
+                    <div class="card-glow"></div>
+                    <div class="card-meta">PARTITION // 04</div>
+                    <div class="component-flex">
+                        <div class="component-icon">📡</div>
+                        <div>
+                            <div class="component-label">Ping Test: Checking Connection...</div>
+                            <div class="component-name">Network Latency Link</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PACKET 5 -->
+                <div class="hardware-card" onclick="openLetter('modal5')">
+                    <div class="card-glow"></div>
+                    <div class="card-meta">PARTITION // 05</div>
+                    <div class="component-flex">
+                        <div class="component-icon">🔑</div>
+                        <div>
+                            <div class="component-label">Two-Factor Authentication (2FA)</div>
+                            <div class="component-name">Security & Encryption Core</div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="photo-wrapper">
-                <img src="pic2.jpg" alt="Memory 2" class="vault-photo">
-                <div class="photo-caption">Core Processing Days</div>
-            </div>
-            <div class="photo-wrapper">
-                <img src="pic3.jpg" alt="Memory 3" class="vault-photo">
-                <div class="photo-caption">Graduation.exe Loaded</div>
-            </div>
-        </div>
-    </section>
+        </main>
+    </div>
 
-    <section class="vault-section">
-        <h2 class="section-heading">💾 Encrypted Data Packets</h2>
-        <p class="section-desc">Murtaza, click on each hardware partition below to decrypt your letters.</p>
+    <!-- =========================================
+         DECRYPTION MODALS (THE LETTERS POPUPS)
+    ========================================= -->
 
-        <div class="hardware-grid">
-
-            <div class="hardware-card" onclick="openLetter('modal1')">
-                <div class="component-icon">⚡</div>
-                <div class="component-label">Error 404: Energy Not Found</div>
-                <div class="component-name">CPU Overload Note</div>
-            </div>
-
-            <div class="hardware-card" onclick="openLetter('modal2')">
-                <div class="component-icon">🔄</div>
-                <div class="component-label">System Update: Changelog v2.0</div>
-                <div class="component-name">Firmware Update Log</div>
-            </div>
-
-            <div class="hardware-card" onclick="openLetter('modal3')">
-                <div class="component-icon">🛡️</div>
-                <div class="component-label">Cloud Backup & Redundancy</div>
-                <div class="component-name">Hardware Backup Partition</div>
-            </div>
-
-            <div class="hardware-card" onclick="openLetter('modal4')">
-                <div class="component-icon">📡</div>
-                <div class="component-label">Ping Test: Checking Connection...</div>
-                <div class="component-name">Network Latency Link</div>
-            </div>
-
-            <div class="hardware-card" onclick="openLetter('modal5')">
-                <div class="component-icon">🔑</div>
-                <div class="component-label">Two-Factor Authentication (2FA)</div>
-                <div class="component-name">Security & Encryption Core</div>
-            </div>
-
-        </div>
-    </section>
-
+    <!-- LETTER 1 MODAL -->
     <div id="modal1" class="vault-modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLetter('modal1')">&times;</span>
@@ -80,14 +111,15 @@
                 <p><strong>My Dearest Murtaza,</strong></p>
                 <p>If you're opening this partition, I'm guessing your brain has officially decided to go on strike after hours of work, coding, meetings, or solving problems that somehow always find their way to you.</p>
                 <p>So here's your reminder: you don't have to carry everything at once.</p>
-                <p>Stretch. Close a few tabs in that beautiful overthinking mind of yours.</p>
-                <p>I know how hard you work for your dreams, and I know how much effort you put into building a future for us. Sometimes I wish you could see yourself through my eyes the determination, intelligence, and dedication that make me so proud every single day.</p>
+                <p>Take a break. Eat this chocolate. Drink some water. Stretch. Close a few tabs in that beautiful overthinking mind of yours.</p>
+                <p>I know how hard you work for your dreams, and I know how much effort you put into building a future for us. Sometimes I wish you could see yourself through my eyes—the determination, intelligence, and dedication that make me so proud every single day.</p>
                 <p>Your worth is never measured by how productive you were today. Even on the days when you feel exhausted, overwhelmed, or stuck, I am still cheering for you just as loudly.</p>
                 <p style="color: #ff69b4; font-weight: bold; margin-top: 20px;">System recommendation: Recharge immediately. Your fiancée loves you very much.</p>
             </div>
         </div>
     </div>
 
+    <!-- LETTER 2 MODAL -->
     <div id="modal2" class="vault-modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLetter('modal2')">&times;</span>
@@ -115,12 +147,14 @@
                 
                 <p><strong>Murtaza,</strong></p>
                 <p>One of my favorite things has been watching you grow into the man you are becoming. Every challenge you've faced, every goal you've worked toward, and every milestone you've achieved has made me admire you even more.</p>
-                <p>Graduation is not just the end of one chapter it's the beginning of so many beautiful things waiting for you. And the best part? I get to stand beside you through all of it.</p>
+                <p>Graduation is not just the end of one chapter—it's the beginning of so many beautiful things waiting for you. And the best part?</p>
+                <p>I get to stand beside you through all of it.</p>
                 <p>Thank you for choosing me to be part of your story. I cannot wait to see all the amazing updates life has in store for you.</p>
             </div>
         </div>
     </div>
 
+    <!-- LETTER 3 MODAL -->
     <div id="modal3" class="vault-modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLetter('modal3')">&times;</span>
@@ -144,6 +178,7 @@
         </div>
     </div>
 
+    <!-- LETTER 4 MODAL -->
     <div id="modal4" class="vault-modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLetter('modal4')">&times;</span>
@@ -168,6 +203,7 @@
         </div>
     </div>
 
+    <!-- LETTER 5 MODAL -->
     <div id="modal5" class="vault-modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeLetter('modal5')">&times;</span>
@@ -199,18 +235,18 @@
         </div>
     </div>
 
+    <!-- POPUP SCRIPTS -->
     <script>
         function openLetter(modalId) {
             document.getElementById(modalId).style.display = "flex";
-            document.body.style.overflow = "hidden"; // Locks main scroll
+            document.body.style.overflow = "hidden";
         }
 
         function closeLetter(modalId) {
             document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto"; // Unlocks main scroll
+            document.body.style.overflow = "auto";
         }
 
-        // Close modal if clicking outside content box
         window.onclick = function(event) {
             if (event.target.classList.contains('vault-modal')) {
                 event.target.style.display = "none";
