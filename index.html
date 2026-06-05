@@ -3,227 +3,835 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Murtaza's Secure Memory Vault</title>
-    <link rel="stylesheet" href="letter.css">
-</head>
-<body class="portfolio-theme">
+    <title>Our Forever Vault // Atika & Murtaza</title>
+    <style>
+        /* =========================================
+           1. ROSE QUARTZ & CREAM THEME (ANTI-PORTFOLIO)
+        ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- FLOATING DECORATIVE BACKGROUND ICONS -->
-    <div class="floating-bg-icons">
-        <span class="f-icon i1">💖</span>
-        <span class="f-icon i2">💻</span>
-        <span class="f-icon i3">🔒</span>
-        <span class="f-icon i4">💕</span>
-        <span class="f-icon i5">🛠️</span>
-        <span class="f-icon i6">❤️</span>
+        body {
+            background: linear-gradient(135deg, #fefaf6 0%, #fdeef4 50%, #f9e4ed 100%);
+            color: #4a3b42;
+            font-family: 'Playfair Display', 'Georgia', serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Soft Floating Rose Petals Background Effect */
+        .petal-bg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+        }
+        .petal {
+            position: absolute;
+            color: #fbcfe8;
+            font-size: 20px;
+            animation: floatAway 12s infinite ease-in-out;
+        }
+        .p1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .p2 { top: 25%; right: 8%; animation-delay: 3s; }
+        .p3 { bottom: 15%; left: 12%; animation-delay: 1.5s; }
+        .p4 { bottom: 30%; right: 5%; animation-delay: 4.5s; }
+
+        @keyframes floatAway {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-20px) rotate(15deg) scale(1.1); }
+        }
+
+        /* =========================================
+           2. ELEGANT SCRAPBOOK NAVIGATION
+        ========================================= */
+        .scrapbook-nav {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(219, 154, 182, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .nav-branding {
+            font-size: 22px;
+            font-weight: bold;
+            color: #9d5c7b;
+            font-style: italic;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 15px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 20px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8c737f;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active-tab {
+            background: #9d5c7b;
+            color: white;
+            box-shadow: 0 4px 15px rgba(157, 92, 123, 0.2);
+        }
+
+        /* =========================================
+           3. BANNER HERO SECTION
+        ========================================= */
+        .scrapbook-hero {
+            max-width: 800px;
+            margin: 50px auto 30px auto;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-stamp {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #bc8fa4;
+            margin-bottom: 10px;
+            display: block;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .hero-headline {
+            font-size: 42px;
+            color: #3a222e;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .hero-divider {
+            width: 60px;
+            height: 1px;
+            background: #9d5c7b;
+            margin: 0 auto 20px auto;
+        }
+
+        /* =========================================
+           4. PAGE SECTION CONTROLLERS
+        ========================================= */
+        .page-content {
+            display: none;
+            max-width: 900px;
+            margin: 0 auto 80px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-content.active-page {
+            display: block;
+        }
+
+        /* =========================================
+           PAGE A: THE LETTERS SCRAPBOOK CARDS
+        ========================================= */
+        .letters-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .letter-envelope {
+            background: #ffffff;
+            border: 1px solid rgba(219, 154, 182, 0.15);
+            border-radius: 16px;
+            padding: 30px 25px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(163, 118, 140, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+
+        .letter-envelope:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(163, 118, 140, 0.12);
+            border-color: rgba(157, 92, 123, 0.3);
+        }
+
+        .envelope-seal {
+            font-size: 28px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .envelope-title {
+            font-size: 19px;
+            color: #3a222e;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .envelope-status {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 12px;
+            color: #bc8fa4;
+            font-style: italic;
+        }
+
+        /* =========================================
+           PAGE B: CINEMATIC VIDEO & IMAGE DEPLOYMENT
+        ========================================= */
+        .video-wrapper-container {
+            max-width: 650px;
+            margin: 20px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(163, 118, 140, 0.1);
+            text-align: center;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .video-player {
+            width: 100%;
+            border-radius: 12px;
+            outline: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .unlock-gallery-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #9d5c7b 0%, #bc8fa4 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(157, 92, 123, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .unlock-gallery-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(157, 92, 123, 0.4);
+        }
+
+        /* Polaroid Memories Layout */
+        .memories-layout {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+            animation: fadeInGrid 0.8s ease forwards;
+        }
+
+        @keyframes fadeInGrid {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Polaroids Frame Concept */
+        .polaroid-frame {
+            background: white;
+            padding: 15px 15px 25px 15px;
+            box-shadow: 0 15px 35px rgba(163, 118, 140, 0.08);
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .polaroid-frame:nth-child(odd) { transform: rotate(-2deg); }
+        .polaroid-frame:nth-child(even) { transform: rotate(2deg); }
+
+        .polaroid-frame:hover {
+            transform: rotate(0deg) scale(1.03);
+            z-index: 5;
+            box-shadow: 0 25px 50px rgba(163, 118, 140, 0.15);
+        }
+
+        .polaroid-image-wrapper {
+            width: 100%;
+            height: 240px;
+            background: #f5f5f5;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .polaroid-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .polaroid-caption {
+            text-align: center;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #634d57;
+            margin-top: 15px;
+        }
+
+        /* =========================================
+           5. ROMANTIC MODAL SYSTEM VIEWPORTS
+        ========================================= */
+        .letter-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(58, 34, 46, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-paper {
+            background: #fffcfb;
+            border-radius: 24px;
+            box-shadow: 0 30px 70px rgba(58, 34, 46, 0.15);
+            width: 100%;
+            max-width: 520px;
+            padding: 40px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid rgba(219, 154, 182, 0.2);
+        }
+
+        /* Dreamy Modal Variant Override */
+        .dreamy-modal-paper {
+            background: linear-gradient(180deg, #ffffff 0%, #fff5f8 100%);
+            border: 1px solid rgba(244, 114, 182, 0.3);
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(219, 154, 182, 0.3);
+        }
+
+        .dreamy-stars {
+            font-size: 32px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: pulseGlow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(251,207,232,0.6)); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 12px rgba(219,154,182,0.8)); }
+        }
+
+        .modal-dismiss-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 26px;
+            color: #bc8fa4;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-dismiss-btn:hover { color: #9d5c7b; }
+
+        .modal-paper-tag {
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #bc8fa4;
+            margin-bottom: 8px;
+        }
+
+        .modal-paper-title {
+            font-size: 24px;
+            color: #3a222e;
+            margin-bottom: 25px;
+            font-weight: 400;
+            border-bottom: 1px dashed rgba(219, 154, 182, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .letter-body-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #58464f;
+        }
+
+        .salutation-header {
+            font-weight: bold;
+            color: #3a222e;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .letter-paragraph {
+            margin-bottom: 15px;
+        }
+
+        .highlight-accent-block {
+            background: #fdf5f8;
+            border-left: 2px solid #9d5c7b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+        }
+
+        .wedding-milestone-panel {
+            background: #fdf2f7;
+            border: 1px dashed #e9bcd0;
+            color: #9d5c7b;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .stat-sheet {
+            background: #fdfaf6;
+            border: 1px solid rgba(219, 154, 182, 0.15);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 14px;
+            border-bottom: 1px dashed rgba(219, 154, 182, 0.1);
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-row span:first-child { color: #bc8fa4; }
+        .stat-row span:last-child { font-weight: bold; color: #3a222e; }
+
+        .footer-note {
+            margin-top: 25px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: #9d5c7b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="petal-bg">
+        <span class="petal p1">🌸</span>
+        <span class="petal p2">✨</span>
+        <span class="petal p3">🌸</span>
+        <span class="petal p4">✨</span>
     </div>
 
-    <!-- NAVIGATION BAR HEADER -->
-    <nav class="portfolio-nav">
-        <div class="nav-logo">Atika & Murtaza</div>
-        <div class="nav-links">
-            <span class="nav-item active">Vault Core</span>
-            <span class="nav-item">Status: Secure</span>
+    <nav class="scrapbook-nav">
+        <div class="nav-branding">Atika & Murtaza</div>
+        <div class="nav-tabs">
+            <button class="tab-btn active-tab" onclick="switchPage('letters-page', this)">Letters</button>
+            <button class="tab-btn" onclick="handleMemoriesClick('memories-page', this)">Memories</button>
         </div>
     </nav>
 
-    <!-- HERO PROFILE SECTION (Inspired by image_7db57a.jpg) -->
-    <header class="portfolio-hero">
-        <div class="hero-bg-text-left">MURTAZA</div>
-        <div class="hero-bg-text-right">VAULT</div>
-        
-        <div class="profile-avatar-container">
-            <div class="profile-avatar">
-                <img src="pic1.jpg" alt="Murtaza and Atika">
-            </div>
-            <div class="profile-badge">System Admin</div>
-        </div>
-
-        <h1 class="hero-title">Secure Hardware Vault</h1>
-        <p class="hero-subtitle">An encrypted multi-module configuration compiled with love for my favorite engineer.</p>
+    <header class="scrapbook-hero">
+        <span class="hero-stamp">Private Archive Built With Love</span>
+        <h1 class="hero-headline">Murtaza's Vault</h1>
+        <div class="hero-divider"></div>
     </header>
 
-    <!-- THE BALANCED GRID SECTION (Inspired by image_7db5b7.jpg) -->
-    <main class="projects-section">
-        <h2 class="section-title">Decryption Modules</h2>
-        
-        <div class="projects-grid">
+    <main id="letters-page" class="page-content active-page">
+        <div class="letters-layout">
             
-            <!-- CARD 1 -->
-            <div class="project-card" onclick="openLetter('modal1')">
-                <div class="card-icon">⚡</div>
-                <h3 class="card-title">Error 404: Energy Not Found</h3>
-                <p class="card-tag alert">System Status: Critical</p>
+            <div class="letter-envelope" onclick="showModal('l1')">
+                <span class="envelope-seal">💌</span>
+                <h3 class="envelope-title">Energy Not Found</h3>
+                <p class="envelope-status">Read Letter</p>
             </div>
 
-            <!-- CARD 2 -->
-            <div class="project-card" onclick="openLetter('modal2')">
-                <div class="card-icon">🔄</div>
-                <h3 class="card-title">System Update: Changelog v2.0</h3>
-                <p class="card-tag update">System Status: Updated</p>
+            <div class="letter-envelope" onclick="showModal('l2')">
+                <span class="envelope-seal">💝</span>
+                <h3 class="envelope-title">Changelog v2.0</h3>
+                <p class="envelope-status">Read Letter</p>
             </div>
 
-            <!-- CARD 3 -->
-            <div class="project-card" onclick="openLetter('modal3')">
-                <div class="card-icon">🛡️</div>
-                <h3 class="card-title">Cloud Backup & Redundancy</h3>
-                <p class="card-tag secure">System Status: Active</p>
+            <div class="letter-envelope" onclick="showModal('l3')">
+                <span class="envelope-seal">🌿</span>
+                <h3 class="envelope-title">Cloud Backup</h3>
+                <p class="envelope-status">Read Letter</p>
             </div>
 
-            <!-- CARD 4 -->
-            <div class="project-card" onclick="openLetter('modal4')">
-                <div class="card-icon">📡</div>
-                <h3 class="card-title">Ping Test: Connection Diagnostic</h3>
-                <p class="card-tag ping">System Status: Latency Check</p>
+            <div class="letter-envelope" onclick="showModal('l4')">
+                <span class="envelope-seal">💞</span>
+                <h3 class="envelope-title">Connection Check</h3>
+                <p class="envelope-status">Read Letter</p>
             </div>
 
-            <!-- CARD 5 -->
-            <div class="project-card" onclick="openLetter('modal5')">
-                <div class="card-icon">🔑</div>
-                <h3 class="card-title">Two-Factor Authentication (2FA)</h3>
-                <p class="card-tag auth">System Status: Verified</p>
+            <div class="letter-envelope" onclick="showModal('l5')">
+                <span class="envelope-seal">🗝️</span>
+                <h3 class="envelope-title">Authentication</h3>
+                <p class="envelope-status">Read Letter</p>
+            </div>
+
+            <div class="letter-envelope" onclick="showModal('l6')">
+                <span class="envelope-seal">🏠</span>
+                <h3 class="envelope-title">Localhost</h3>
+                <p class="envelope-status">Read Letter</p>
+            </div>
+
+            <div class="letter-envelope" onclick="showModal('l7')">
+                <span class="envelope-seal">🧼</span>
+                <h3 class="envelope-title">Cache Clear</h3>
+                <p class="envelope-status">Read Letter</p>
+            </div>
+
+            <div class="letter-envelope" onclick="showModal('l8')">
+                <span class="envelope-seal">🔄</span>
+                <h3 class="envelope-title">Sync Protocol</h3>
+                <p class="envelope-status">Read Letter</p>
+            </div>
+
+            <div class="letter-envelope" onclick="showModal('l9')">
+                <span class="envelope-seal">💻</span>
+                <h3 class="envelope-title">Mainframe</h3>
+                <p class="envelope-status">Read Letter</p>
             </div>
 
         </div>
     </main>
 
-    <!-- =========================================
-         MODAL DIALOG POPUPS (STYLISH INTERFACES)
-    ========================================= -->
+    <main id="memories-page" class="page-content">
+        
+        <div id="video-stage" class="video-wrapper-container">
+            <video id="story-video" class="video-player" controls>
+                <source src="first edit.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <br>
+            <button class="unlock-gallery-btn" onclick="unlockPhotoAlbum()">Unlock Photo Album ✨</button>
+        </div>
 
-    <!-- MODAL 1 -->
-    <div id="modal1" class="custom-modal">
-        <div class="modal-card-content">
-            <span class="close-modal-btn" onclick="closeLetter('modal1')">&times;</span>
-            <div class="modal-meta">LOG_EXEC // OVERLOAD_OVERRIDE</div>
-            <h3 class="modal-main-title">⚡ ERROR 404: ENERGY NOT FOUND</h3>
-            <div class="modal-text-pane">
-                <p class="letter-greeting">My Dearest Murtaza,</p>
-                <p>If you're opening this partition, I'm guessing your brain has officially decided to go on strike after hours of work, coding, meetings, or solving problems that somehow always find their way to you.</p>
-                <p>So here's your reminder: <strong>you don't have to carry everything at once.</strong></p>
-                <div class="terminal-container">
-                    <span class="terminal-title">[RUNNING RECOVERY PROTOCOLS...]</span>
-                    <p>• Take a break.<br>• Eat this chocolate.<br>• Drink some water.<br>• Stretch.</p>
+        <div id="photo-gallery-grid" class="memories-layout">
+            
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="first soca shoot.jpeg" alt="Memory 1">
                 </div>
-                <p>Close a few tabs in that beautiful overthinking mind of yours. I know how hard you work for your dreams, and I know how much effort you put into building a future for us. Sometimes I wish you could see yourself through my eyes—the determination, intelligence, and dedication that make me so proud every single day.</p>
-                <div class="terminal-footer">
-                    Recommendation: Recharge immediately. Your fiancée loves you very much.
+                <p class="polaroid-caption">Where it all began ❤️</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic2.jpg" alt="Memory 2">
                 </div>
+                <p class="polaroid-caption">My favorite smile ✨</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic3.jpg" alt="Memory 3">
+                </div>
+                <p class="polaroid-caption">Every single moment with you.</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic4.jpg" alt="Memory 4">
+                </div>
+                <p class="polaroid-caption">Our beautiful engagement 💍</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic5.jpg" alt="Memory 5">
+                </div>
+                <p class="polaroid-caption">Laughing through it all 🌸</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic6.jpg" alt="Memory 6">
+                </div>
+                <p class="polaroid-caption">The sweetest days with you ✨</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic7.jpg" alt="Memory 7">
+                </div>
+                <p class="polaroid-caption">My favorite place is next to you 💕</p>
+            </div>
+
+            <div class="polaroid-frame">
+                <div class="polaroid-image-wrapper">
+                    <img src="pic8.jpg" alt="Memory 8">
+                </div>
+                <p class="polaroid-caption">To infinite updates together ♾️</p>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="memories-welcome-modal" class="letter-modal">
+        <div class="modal-paper dreamy-modal-paper">
+            <span class="modal-dismiss-btn" onclick="closeMemoriesModal()">&times;</span>
+            <span class="dreamy-stars">✨🪐✨</span>
+            <h3 class="modal-paper-title" style="border:none; margin-bottom:10px;">Welcome to Our Sanctuary</h3>
+            <div class="letter-body-text" style="font-size: 18px; font-style: italic; color: #725363;">
+                <p class="letter-paragraph">"Here's a special memory close to both of our hearts..."</p>
+                <button class="unlock-gallery-btn" style="margin-top:15px; padding:8px 24px;" onclick="closeMemoriesModal()">Step Inside ✨</button>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 2 -->
-    <div id="modal2" class="custom-modal">
-        <div class="modal-card-content">
-            <span class="close-modal-btn" onclick="closeLetter('modal2')">&times;</span>
-            <div class="modal-meta">LOG_EXEC // CHANGELOG_COMPILER</div>
-            <h3 class="modal-main-title">🔄 SYSTEM UPDATE: CHANGELOG v2.0</h3>
-            <div class="modal-text-pane">
-                <div class="code-block-interface">
-                    <span class="code-cmt">// Release Notes Deployment History</span>
-                    <p><span class="code-kw">Version 1.0 {</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;• Two strangers crossed paths;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;• Unexpected feelings detected;<br>
-                    <span class="code-kw">}</span></p>
-
-                    <p><span class="code-kw">Version 1.5 {</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;• Countless conversations unlocked;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;• Late-night 2:50 AM Google Meet sessions;<br>
-                    <span class="code-kw">}</span></p>
-
-                    <p><span class="code-kw">Version 2.0 {</span><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;• Engagement successfully completed;<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;• Future planning module activated;<br>
-                    <span class="code-kw">}</span></p>
+    <div id="l1" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l1')">&times;</span>
+            <div class="modal-paper-tag">Partition One // Recharge</div>
+            <h3 class="modal-paper-title">Error 404: Energy Not Found</h3>
+            <div class="letter-body-text">
+                <span class="salutation-header">My Dearest Murtaza,</span>
+                <p class="letter-paragraph">If you're opening this partition, I'm guessing your brain has officially decided to go on strike after hours of work, coding, meetings, or solving problems that somehow always find their way to you.</p>
+                <p class="letter-paragraph">So here's your reminder: <strong>you don't have to carry everything at once.</strong></p>
+                
+                <div class="highlight-accent-block">
+                    Take a deep breath. Close your computer eyes. Eat some chocolate, drink a cold glass of water, stretch out, and just rest for a moment.
                 </div>
-                <p class="release-label">UPCOMING MAJOR RELEASE:</p>
-                <div class="marriage-badge">💍 Marriage.exe</div>
-                <p class="letter-greeting" style="margin-top: 20px;">Murtaza,</p>
-                <p>One of my favorite things has been watching you grow into the man you are becoming. Every challenge you've faced, every goal you've worked toward, and every milestone you've achieved has made me admire you even more. Graduation is just the beginning of beautiful things waiting for you. And the best part? <strong>I get to stand beside you through all of it.</strong></p>
+
+                <p class="letter-paragraph">Close a few tabs in that beautiful overthinking mind of yours. I know how hard you work for your dreams, and I know how much effort you put into building a future for us. Sometimes I wish you could see yourself through my eyes—the determination, intelligence, and dedication that make me so proud every single day.</p>
+                <div class="footer-note">Your fiancée loves you completely.</div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 3 -->
-    <div id="modal3" class="custom-modal">
-        <div class="modal-card-content">
-            <span class="close-modal-btn" onclick="closeLetter('modal3')">&times;</span>
-            <div class="modal-meta">LOG_EXEC // REDUNDANCY_ALLOCATOR</div>
-            <h3 class="modal-main-title">🛡️ CLOUD BACKUP & STORAGE</h3>
-            <div class="modal-text-pane">
-                <p class="letter-greeting">Dear Murtaza,</p>
-                <p>This note is hidden away because that's exactly how backup systems work—you don't always see them, but they're always there when you need them.</p>
-                <p>Life is about to move very fast. New responsibilities, new goals, and new projects will come your way. Through all of those days, I want you to remember one thing: <strong>You never have to face anything alone.</strong></p>
-                <div class="spec-grid-table">
-                    <div class="grid-table-row"><span>ALLOCATION:</span> <span>Endless Love & Patience</span></div>
-                    <div class="grid-table-row"><span>EXPIRATION:</span> <span>No Expiration Date [PERMANENT]</span></div>
-                    <div class="grid-table-row"><span>CAPACITY:</span> <span>Infinite Storage</span></div>
-                </div>
-                <p>Whenever you feel stressed or simply tired, I will always be here to listen, celebrate every victory, and help carry every burden I can.</p>
+    <div id="l2" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l2')">&times;</span>
+            <div class="modal-paper-tag">Partition Two // Evolution</div>
+            <h3 class="modal-paper-title">System Update: Changelog v2.0</h3>
+            <div class="letter-body-text">
+                <p class="letter-paragraph"><strong>v1.0:</strong> Two beautiful strangers crossed paths. Unexpected feelings detected.</p>
+                <p class="letter-paragraph"><strong>v1.5:</strong> Countless hours of conversations unlocked. Late-night 2:50 AM Google Meet connections.</p>
+                <p class="letter-paragraph"><strong>v2.0:</strong> Engagement successfully completed. Our beautiful future planning modules activated.</p>
+                
+                <div class="wedding-milestone-panel">💍 Next Step: Marriage.exe</div>
+                
+                <span class="salutation-header">Murtaza,</span>
+                <p class="letter-paragraph">One of my favorite things has been watching you grow into the man you are becoming. Every challenge you've faced, every goal you've worked toward, and every milestone you've achieved has made me admire you even more. Graduation is just the beginning of beautiful things waiting for you. And the best part? <strong>I get to stand beside you through all of it.</strong></p>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 4 -->
-    <div id="modal4" class="custom-modal">
-        <div class="modal-card-content">
-            <span class="close-modal-btn" onclick="closeLetter('modal4')">&times;</span>
-            <div class="modal-meta">LOG_EXEC // LATENCY_TESTER</div>
-            <h3 class="modal-main-title">📡 PING TEST: CONNECTION DIAGNOSTIC</h3>
-            <div class="modal-text-pane">
-                <div class="ping-alert">
-                    ⚠️ ALERT: Please send one (1) heart emoji immediately to confirm signal strength. ❤️
+    <div id="l3" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l3')">&times;</span>
+            <div class="modal-paper-tag">Partition Three // Reliance</div>
+            <h3 class="modal-paper-title">Cloud Backup & Redundancy</h3>
+            <div class="letter-body-text">
+                <span class="salutation-header">Dear Murtaza,</span>
+                <p class="letter-paragraph">This note is hidden away because that's exactly how backup systems work—you don't always see them, but they're always there when you need them.</p>
+                <p class="letter-paragraph">Life is about to move very fast. New responsibilities, new goals, and new projects will come your way. Through all of those days, I want you to remember one thing: <strong>You never have to face anything alone.</strong></p>
+                
+                <div class="stat-sheet">
+                    <div class="stat-row"><span>ALLOCATION:</span><span>Endless Love & Care</span></div>
+                    <div class="stat-row"><span>EXPIRATION:</span><span>Lifetime [Permanent]</span></div>
+                    <div class="stat-row"><span>CAPACITY:</span><span>Infinite Space</span></div>
                 </div>
-                <p style="margin-top: 15px;">Physical distance may increase latency, but nothing can weaken the bond we've built.</p>
-                <div class="bullet-highlights">
-                    • You're still the first person I want to tell things to.<br>
-                    • You're still my favorite notification.<br>
-                    • You're still the person who makes every day better.
-                </div>
+
+                <p class="letter-paragraph">Whenever you feel stressed or simply tired, I will always be here to listen, celebrate every victory, and help carry every single burden I can.</p>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 5 -->
-    <div id="modal5" class="custom-modal">
-        <div class="modal-card-content">
-            <span class="close-modal-btn" onclick="closeLetter('modal5')">&times;</span>
-            <div class="modal-meta">LOG_EXEC // PRIVILEGE_VALIDATOR</div>
-            <h3 class="modal-main-title">🔑 TWO-FACTOR AUTHENTICATION</h3>
-            <div class="modal-text-pane">
-                <div class="console-box">
-                    <div>&gt; Access Request Status: <span style="color: #10b981;">Verified</span></div>
-                    <div>&gt; Trust Allocation Level: <span style="color: #10b981;">Unlimited</span></div>
+    <div id="l4" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l4')">&times;</span>
+            <div class="modal-paper-tag">Partition Four // Telemetry</div>
+            <h3 class="modal-paper-title">Ping Test: Connection Diagnostic</h3>
+            <div class="letter-body-text">
+                <div class="highlight-accent-block" style="border-color: #f472b6;">
+                    💌 Notification: Please reply with exactly one (1) heart emoji to confirm signal calibration. 
                 </div>
-                <p><strong>Congratulations!</strong> You have successfully gained permanent access to my heart.</p>
-                <div class="auth-box">
-                    <span style="color: #a855f7; font-weight: bold; display: block; margin-bottom: 5px;">ACCEPTED CREDENTIALS:</span>
-                    <p>✓ One warm hug</p>
-                    <p>✓ One forehead kiss</p>
-                    <p>✓ Holding my hand and refusing to let go</p>
-                </div>
-                <p style="font-weight: bold; color: #ff69b4; margin-top: 15px;">I love you, sassy ❤️</p>
+                <p class="letter-paragraph">Physical miles might try to introduce latency, but they can't touch the strong connection we have engineered together.</p>
+                <p class="letter-paragraph">• You are always my very first thought.</p>
+                <p class="letter-paragraph">• You are my favorite pop-up notification.</p>
+                <p class="letter-paragraph">• You are the sweet soul that brightens every corner of my days.</p>
             </div>
         </div>
     </div>
 
-    <!-- LOGICAL ARCHITECTURE CONTROL CONTROLLER -->
+    <div id="l5" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l5')">&times;</span>
+            <div class="modal-paper-tag">Partition Five // Core Credentials</div>
+            <h3 class="modal-paper-title">Two-Factor Authentication</h3>
+            <div class="letter-body-text">
+                <p class="letter-paragraph"><strong>Access Granted!</strong> You have successfully logged into my heart permanently.</p>
+                
+                <div class="stat-sheet">
+                    <div class="stat-row"><span>Passcode One:</span><span>A tight, cozy hug</span></div>
+                    <div class="stat-row"><span>Passcode Two:</span><span>A soft forehead kiss</span></div>
+                    <div class="stat-row"><span>Passcode Three:</span><span>Holding onto my hand forever</span></div>
+                </div>
+
+                <p class="letter-paragraph" style="text-align: center; font-weight: bold; color: #9d5c7b; font-size: 18px; margin-top: 20px;">I love you, sassy ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="l6" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l6')">&times;</span>
+            <div class="modal-paper-tag">Partition Six // Environment</div>
+            <h3 class="modal-paper-title">Root Directory: localhost://home</h3>
+            <div class="letter-body-text">
+                <span class="salutation-header">Hey handsome,</span>
+                <p class="letter-paragraph">No matter where we run our code, where our careers take us, or how far apart physical distance might try to make us feel, I want you to know that you are my ultimate default environment. The place where my soul drops its guard entirely.</p>
+                <p class="letter-paragraph">Whenever the world outside feels unpredictable, chaotic, or overly complicated, you can always point your path straight back to me. My arms are a safe space built entirely without firewalls or restrictions—just pure, unconditioned warmth waiting for you to log back in.</p>
+                <div class="highlight-accent-block" style="border-color: #9d5c7b;">
+                    No matter the server load of life, you are the only sanctuary I need to return to.
+                </div>
+                <p class="letter-paragraph">You make me feel incredibly protected and cherished, Murtaza. This space belongs to you completely, forever.</p>
+                <div class="footer-note">Compiles perfectly with infinite love.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="l7" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l7')">&times;</span>
+            <div class="modal-paper-tag">Partition Seven // Refactoring</div>
+            <h3 class="modal-paper-title">Cache Clear & Optimization</h3>
+            <div class="letter-body-text">
+                <span class="salutation-header">My Favorite Person,</span>
+                <p class="letter-paragraph">This letter is your gentle reminder to push a hard reset on all the built-up stress, background noises, and old anxieties resting inside your mind today. Clear out the temporary files that make you second-guess how incredible you are.</p>
+                <p class="letter-paragraph">You carry so much responsibility on your shoulders, and you do it with a strength that leaves me in awe. But even the strongest systems need a moment to clear their cache and rest deeply.</p>
+                <div class="highlight-accent-block" style="border-color: #bc8fa4;">
+                    Action log: Overthinking dependencies have been forcefully uninstalled. Cozy peace overrides have permanently taken effect.
+                </div>
+                <p class="letter-paragraph">Let everything go for just a moment. Breathe out the heavy things, and fill your thoughts with the truth of how loved you are. We can always execute a fresh, peaceful restart together whenever you are ready.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="l8" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l8')">&times;</span>
+            <div class="modal-paper-tag">Partition Eight // Concurrency</div>
+            <h3 class="modal-paper-title">Real-Time Sync Protocol</h3>
+            <div class="letter-body-text">
+                <span class="salutation-header">Murtaza,</span>
+                <p class="letter-paragraph">Even during the hours when we are caught up in our own separate busy routines, running through demanding meetings, or quieted down by exhausting workflows, our hearts are constantly running a beautiful background thread.</p>
+                <p class="letter-paragraph">There is zero packet loss or connection delay in how I hold you in my thoughts. Distance can try to throw latency at our days, but it cannot touch the real-time tether linking my heart directly to yours. Every beat is calibrated to your comfort.</p>
+                <div class="wedding-milestone-panel" style="font-size:15px; margin: 25px 0;">Status: Securely Connected to Atika's Heart [100% Signal Strength]</div>
+                <p class="letter-paragraph">We are, and always will be, the ultimate team. Seamlessly synced, navigating everything together step by step.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="l9" class="letter-modal">
+        <div class="modal-paper">
+            <span class="modal-dismiss-btn" onclick="hideModal('l9')">&times;</span>
+            <div class="modal-paper-tag">Partition Nine // Infrastructure</div>
+            <h3 class="modal-paper-title">Mainframe Allocation</h3>
+            <div class="letter-body-text">
+                <span class="salutation-header">To my absolute anchor,</span>
+                <p class="letter-paragraph">You keep my world turning so beautifully. Your patience, your brilliant mind, and the unconditional kindness you treat me with make you the steady mainframe behind all of my happiest, safest moments.</p>
+                <p class="letter-paragraph">Thank you for being the calm presence in the middle of any storm, and for building a foundation of a love that is resilient and unbreakable. You hold the master root privileges to every single part of who I am, and there is no one else I would ever trust with them.</p>
+                <div class="stat-sheet">
+                    <div class="stat-row"><span>PRIMARY ARCHITECT:</span><span>Murtaza</span></div>
+                    <div class="stat-row"><span>UPTIME STATUS:</span><span>Eternal [99.999%]</span></div>
+                </div>
+                <p class="letter-paragraph">I appreciate you more than my words could ever fully express. I am completely and irrevocably yours.</p>
+                <p class="letter-paragraph" style="text-align: center; font-weight: bold; color: #9d5c7b; margin-top: 15px; font-size: 18px;">Forever & Ever ❤️</p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function openLetter(modalId) {
-            document.getElementById(modalId).style.display = "flex";
+        let targetPageId = '';
+        let targetActiveBtn = null;
+
+        function handleMemoriesClick(pageId, activeBtn) {
+            targetPageId = pageId;
+            targetActiveBtn = activeBtn;
+
+            document.getElementById('memories-welcome-modal').style.display = "flex";
             document.body.style.overflow = "hidden";
         }
 
-        function closeLetter(modalId) {
-            document.getElementById(modalId).style.display = "none";
+        function closeMemoriesModal() {
+            document.getElementById('memories-welcome-modal').style.display = "none";
+            document.body.style.overflow = "auto";
+            
+            if(targetPageId && targetActiveBtn) {
+                switchPage(targetPageId, targetActiveBtn);
+            }
+        }
+
+        function switchPage(pageId, activeBtn) {
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active-page'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active-tab'));
+            
+            document.getElementById(pageId).classList.add('active-page');
+            activeBtn.classList.add('active-tab');
+
+            if (pageId !== 'memories-page') {
+                document.getElementById('story-video').pause();
+            }
+        }
+
+        function unlockPhotoAlbum() {
+            var videoElement = document.getElementById('story-video');
+            var videoStage = document.getElementById('video-stage');
+            var galleryGrid = document.getElementById('photo-gallery-grid');
+
+            videoElement.pause();
+
+            videoStage.style.opacity = "0";
+            videoStage.style.transform = "scale(0.95)";
+            
+            setTimeout(function() {
+                videoStage.style.display = "none";
+                galleryGrid.style.display = "grid";
+            }, 500);
+        }
+
+        function showModal(id) {
+            document.getElementById(id).style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+
+        function hideModal(id) {
+            document.getElementById(id).style.display = "none";
             document.body.style.overflow = "auto";
         }
 
-        window.onclick = function(event) {
-            if (event.target.classList.contains('custom-modal')) {
-                event.target.style.display = "none";
-                document.body.style.overflow = "auto";
+        window.onclick = function(e) {
+            if (e.target.classList.contains('letter-modal')) {
+                if (e.target.id === 'memories-welcome-modal') {
+                    closeMemoriesModal();
+                } else {
+                    e.target.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
             }
         }
     </script>
